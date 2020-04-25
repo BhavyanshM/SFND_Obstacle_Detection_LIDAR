@@ -1,5 +1,5 @@
 /* \author Aaron Brown */
-// Quiz on implementing simple RANSAC line fitting
+// Quiz on implementing simple RANSAC line fitting 
 
 #include "../../render/render.h"
 #include "../../render/box.h"
@@ -114,7 +114,7 @@ std::vector<std::vector<int>> euclideanCluster(const std::vector<std::vector<flo
 	return clusters;
 
 }
-
+ 
 int main ()
 {
 
