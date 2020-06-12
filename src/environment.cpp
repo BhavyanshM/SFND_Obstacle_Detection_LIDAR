@@ -92,11 +92,11 @@ void cityBlock(pcl::visualization::PCLVisualizer::Ptr& viewer, ProcessPointCloud
 
   inputCloud = pointProcessorI.FilterCloud(inputCloud, 0.3f,Eigen::Vector4f(-10,-5,-2,1),Eigen::Vector4f(30,8,1,1));
   
-  std::pair<pcl::PointCloud<pcl::PointXYZI>::Ptr, pcl::PointCloud<pcl::PointXYZI>::Ptr> cloudPair = pointProcessorI.SegmentPlaneRansac(inputCloud,25,0.3);
+  std::pair<pcl::PointCloud<pcl::PointXYZI>::Ptr, pcl::PointCloud<pcl::PointXYZI>::Ptr> cloudPair = pointProcessorI.SegmentPlaneRansac(inputCloud,25,0.2);
   renderPointCloud(viewer, cloudPair.second, "PlaneCloud", Color(0,1,0));
-  renderPointCloud(viewer,cloudPair.first,"outlierCloud", Color(0,1,1));
+  //renderPointCloud(viewer,cloudPair.first,"outlierCloud", Color(0,1,1));
   
-  std::vector<pcl::PointCloud<pcl::PointXYZI>::Ptr> cloudClusters = pointProcessorI.Clustering(cloudPair.first, 0.53, 10, 500);
+  std::vector<pcl::PointCloud<pcl::PointXYZI>::Ptr> cloudClusters = pointProcessorI.KdTreeClustering(cloudPair.first, 0.9, 3, 3000);
   
       // Visualize the Clusters separately
     int clusterId = 0;

@@ -1,24 +1,24 @@
 Determining if the pthread_create exist failed with the following output:
-Change Dir: /home/workspace/SFND_Lidar_Obstacle_Detection/src/quiz/cluster/build/CMakeFiles/CMakeTmp
+Change Dir: /home/quantum/Workspace/Storage/IHMC_PhD/Academics/Udacity/Projects/SFND_Obstacle_Detection_LIDAR/src/quiz/cluster/build/CMakeFiles/CMakeTmp
 
-Run Build Command:"/usr/bin/make" "cmTC_f21c3/fast"
-/usr/bin/make -f CMakeFiles/cmTC_f21c3.dir/build.make CMakeFiles/cmTC_f21c3.dir/build
-make[1]: Entering directory '/home/workspace/SFND_Lidar_Obstacle_Detection/src/quiz/cluster/build/CMakeFiles/CMakeTmp'
-Building C object CMakeFiles/cmTC_f21c3.dir/CheckSymbolExists.c.o
-/usr/bin/cc    -o CMakeFiles/cmTC_f21c3.dir/CheckSymbolExists.c.o   -c /home/workspace/SFND_Lidar_Obstacle_Detection/src/quiz/cluster/build/CMakeFiles/CMakeTmp/CheckSymbolExists.c
-Linking C executable cmTC_f21c3
-/usr/local/bin/cmake -E cmake_link_script CMakeFiles/cmTC_f21c3.dir/link.txt --verbose=1
-/usr/bin/cc      -rdynamic CMakeFiles/cmTC_f21c3.dir/CheckSymbolExists.c.o  -o cmTC_f21c3 
-CMakeFiles/cmTC_f21c3.dir/CheckSymbolExists.c.o: In function `main':
-CheckSymbolExists.c:(.text+0x16): undefined reference to `pthread_create'
+Run Build Command:"/usr/bin/make" "cmTC_68ea6/fast"
+/usr/bin/make -f CMakeFiles/cmTC_68ea6.dir/build.make CMakeFiles/cmTC_68ea6.dir/build
+make[1]: Entering directory '/home/quantum/Workspace/Storage/IHMC_PhD/Academics/Udacity/Projects/SFND_Obstacle_Detection_LIDAR/src/quiz/cluster/build/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_68ea6.dir/CheckSymbolExists.c.o
+/usr/bin/cc    -o CMakeFiles/cmTC_68ea6.dir/CheckSymbolExists.c.o   -c /home/quantum/Workspace/Storage/IHMC_PhD/Academics/Udacity/Projects/SFND_Obstacle_Detection_LIDAR/src/quiz/cluster/build/CMakeFiles/CMakeTmp/CheckSymbolExists.c
+Linking C executable cmTC_68ea6
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_68ea6.dir/link.txt --verbose=1
+/usr/bin/cc      -rdynamic CMakeFiles/cmTC_68ea6.dir/CheckSymbolExists.c.o  -o cmTC_68ea6 
+CMakeFiles/cmTC_68ea6.dir/CheckSymbolExists.c.o: In function `main':
+CheckSymbolExists.c:(.text+0x1b): undefined reference to `pthread_create'
 collect2: error: ld returned 1 exit status
-CMakeFiles/cmTC_f21c3.dir/build.make:86: recipe for target 'cmTC_f21c3' failed
-make[1]: *** [cmTC_f21c3] Error 1
-make[1]: Leaving directory '/home/workspace/SFND_Lidar_Obstacle_Detection/src/quiz/cluster/build/CMakeFiles/CMakeTmp'
-Makefile:121: recipe for target 'cmTC_f21c3/fast' failed
-make: *** [cmTC_f21c3/fast] Error 2
+CMakeFiles/cmTC_68ea6.dir/build.make:97: recipe for target 'cmTC_68ea6' failed
+make[1]: *** [cmTC_68ea6] Error 1
+make[1]: Leaving directory '/home/quantum/Workspace/Storage/IHMC_PhD/Academics/Udacity/Projects/SFND_Obstacle_Detection_LIDAR/src/quiz/cluster/build/CMakeFiles/CMakeTmp'
+Makefile:126: recipe for target 'cmTC_68ea6/fast' failed
+make: *** [cmTC_68ea6/fast] Error 2
 
-File /home/workspace/SFND_Lidar_Obstacle_Detection/src/quiz/cluster/build/CMakeFiles/CMakeTmp/CheckSymbolExists.c:
+File /home/quantum/Workspace/Storage/IHMC_PhD/Academics/Udacity/Projects/SFND_Obstacle_Detection_LIDAR/src/quiz/cluster/build/CMakeFiles/CMakeTmp/CheckSymbolExists.c:
 /* */
 #include <pthread.h>
 
@@ -34,22 +34,22 @@ int main(int argc, char** argv)
 }
 
 Determining if the function pthread_create exists in the pthreads failed with the following output:
-Change Dir: /home/workspace/SFND_Lidar_Obstacle_Detection/src/quiz/cluster/build/CMakeFiles/CMakeTmp
+Change Dir: /home/quantum/Workspace/Storage/IHMC_PhD/Academics/Udacity/Projects/SFND_Obstacle_Detection_LIDAR/src/quiz/cluster/build/CMakeFiles/CMakeTmp
 
-Run Build Command:"/usr/bin/make" "cmTC_298f0/fast"
-/usr/bin/make -f CMakeFiles/cmTC_298f0.dir/build.make CMakeFiles/cmTC_298f0.dir/build
-make[1]: Entering directory '/home/workspace/SFND_Lidar_Obstacle_Detection/src/quiz/cluster/build/CMakeFiles/CMakeTmp'
-Building C object CMakeFiles/cmTC_298f0.dir/CheckFunctionExists.c.o
-/usr/bin/cc   -DCHECK_FUNCTION_EXISTS=pthread_create   -o CMakeFiles/cmTC_298f0.dir/CheckFunctionExists.c.o   -c /usr/local/share/cmake-3.13/Modules/CheckFunctionExists.c
-Linking C executable cmTC_298f0
-/usr/local/bin/cmake -E cmake_link_script CMakeFiles/cmTC_298f0.dir/link.txt --verbose=1
-/usr/bin/cc  -DCHECK_FUNCTION_EXISTS=pthread_create    -rdynamic CMakeFiles/cmTC_298f0.dir/CheckFunctionExists.c.o  -o cmTC_298f0 -lpthreads 
+Run Build Command:"/usr/bin/make" "cmTC_f2f55/fast"
+/usr/bin/make -f CMakeFiles/cmTC_f2f55.dir/build.make CMakeFiles/cmTC_f2f55.dir/build
+make[1]: Entering directory '/home/quantum/Workspace/Storage/IHMC_PhD/Academics/Udacity/Projects/SFND_Obstacle_Detection_LIDAR/src/quiz/cluster/build/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_f2f55.dir/CheckFunctionExists.c.o
+/usr/bin/cc   -DCHECK_FUNCTION_EXISTS=pthread_create   -o CMakeFiles/cmTC_f2f55.dir/CheckFunctionExists.c.o   -c /usr/share/cmake-3.10/Modules/CheckFunctionExists.c
+Linking C executable cmTC_f2f55
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_f2f55.dir/link.txt --verbose=1
+/usr/bin/cc  -DCHECK_FUNCTION_EXISTS=pthread_create    -rdynamic CMakeFiles/cmTC_f2f55.dir/CheckFunctionExists.c.o  -o cmTC_f2f55 -lpthreads 
 /usr/bin/ld: cannot find -lpthreads
 collect2: error: ld returned 1 exit status
-CMakeFiles/cmTC_298f0.dir/build.make:86: recipe for target 'cmTC_298f0' failed
-make[1]: *** [cmTC_298f0] Error 1
-make[1]: Leaving directory '/home/workspace/SFND_Lidar_Obstacle_Detection/src/quiz/cluster/build/CMakeFiles/CMakeTmp'
-Makefile:121: recipe for target 'cmTC_298f0/fast' failed
-make: *** [cmTC_298f0/fast] Error 2
+CMakeFiles/cmTC_f2f55.dir/build.make:97: recipe for target 'cmTC_f2f55' failed
+make[1]: *** [cmTC_f2f55] Error 1
+make[1]: Leaving directory '/home/quantum/Workspace/Storage/IHMC_PhD/Academics/Udacity/Projects/SFND_Obstacle_Detection_LIDAR/src/quiz/cluster/build/CMakeFiles/CMakeTmp'
+Makefile:126: recipe for target 'cmTC_f2f55/fast' failed
+make: *** [cmTC_f2f55/fast] Error 2
 
 

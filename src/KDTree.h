@@ -1,7 +1,7 @@
 /* \author Aaron Brown */
 // Quiz on implementing kd tree
 
-#include "../../render/render.h"
+#include "render/render.h"
 
 
 // Structure to represent node of kd tree
@@ -29,19 +29,27 @@ struct KdTree
     	if (*parent == NULL){
         	*parent = new Node(newPoint,id);
         }else{
-       		if (depth % 2 == 0){
-              if(newPoint[0] < (*parent)->point[0]){
-                actualInsert(&((*parent)->left), newPoint, id, depth+1);
-              }else{
-                actualInsert(&((*parent)->right), newPoint, id, depth+1);
-              }
-            }else{
-              if(newPoint[1] < (*parent)->point[1]){
-                actualInsert(&((*parent)->left), newPoint, id, depth+1);
-              }else{
-                actualInsert(&((*parent)->right), newPoint, id, depth+1);
-              }
-            }
+
+          short rem = depth % 3;
+       		// if (depth % 3 == 0){
+          if(newPoint[rem] < (*parent)->point[rem]){
+            actualInsert(&((*parent)->left), newPoint, id, depth+1);
+          }else{
+            actualInsert(&((*parent)->right), newPoint, id, depth+1);
+          }
+            // }else if (depth % 3 == 1){
+            //   if(newPoint[1] < (*parent)->point[1]){
+            //     actualInsert(&((*parent)->left), newPoint, id, depth+1);
+            //   }else{
+            //     actualInsert(&((*parent)->right), newPoint, id, depth+1);
+            //   }
+            // }else{
+            //   if(newPoint[1] < (*parent)->point[1]){
+            //     actualInsert(&((*parent)->left), newPoint, id, depth+1);
+            //   }else{
+            //     actualInsert(&((*parent)->right), newPoint, id, depth+1);
+            //   }
+            // }
         }
       	
 

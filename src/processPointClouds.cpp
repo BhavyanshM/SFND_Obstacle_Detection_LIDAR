@@ -1,8 +1,8 @@
 // PCL lib Functions for processing point clouds 
 
 #include "processPointClouds.h"
-#include <unordered_set>
-
+#include <unordered_set> 
+ 
 
 //constructor:
 template<typename PointT>
@@ -182,7 +182,7 @@ std::pair<typename pcl::PointCloud<PointT>::Ptr, typename pcl::PointCloud<PointT
   
     auto endTime = std::chrono::steady_clock::now();
     auto elapsedTime = std::chrono::duration_cast<std::chrono::milliseconds>(endTime - startTime);
-    std::cout << "plane segmentation took " << elapsedTime.count() << " milliseconds" << std::endl;
+    // std::cout << "plane segmentation took " << elapsedTime.count() << " milliseconds" << std::endl;
 
     typename pcl::PointCloud<PointT>::Ptr inlierCloud(new pcl::PointCloud<PointT>());
     typename pcl::PointCloud<PointT>::Ptr outlierCloud(new pcl::PointCloud<PointT>());
@@ -199,6 +199,99 @@ std::pair<typename pcl::PointCloud<PointT>::Ptr, typename pcl::PointCloud<PointT
 
     std::pair<typename pcl::PointCloud<PointT>::Ptr, typename pcl::PointCloud<PointT>::Ptr> segResult(outlierCloud,inlierCloud);
     return segResult;
+}
+
+template<typename PointT>
+void ProcessPointClouds<PointT>::Proximity(int index, typename pcl::PointCloud<PointT>::Ptr cloud, std::vector<int>& cluster, std::vector<bool>& processed, KdTree* tree, float distanceTol){
+  
+    processed[index] = true;
+    cluster.push_back(index); 
+  
+    PointT cloudPoint = cloud->points[index];
+    std::vector<float> point = {cloudPoint.x,cloudPoint.y,cloudPoint.z};
+    std::vector<int> nearest = tree->search(point,distanceTol);
+  
+  
+  
+    for (int id: nearest){
+        if(!processed[id]){
+            Proximity(id, cloud, cluster, processed, tree, distanceTol);
+        }
+    }
+    
+}
+
+template<typename PointT>
+std::vector<std::vector<int>> ProcessPointClouds<PointT>::euclideanCluster(typename pcl::PointCloud<PointT>::Ptr cloud, KdTree* tree, float distanceTol)
+{
+
+    // TODO: Fill out this function to return list of indices for each cluster
+    
+    std::vector<bool> processed(cloud->points.size(),false);
+  
+    std::vector<std::vector<int>> clusters;
+    for (int i = 0; i<cloud->points.size(); i++){
+        if(processed[i]){
+            continue;
+        }
+      
+        std::vector<int> cluster;
+        Proximity(i,cloud,cluster,processed, tree, distanceTol);
+        clusters.push_back(cluster);
+        
+    }
+ 
+    return clusters;
+
+}
+
+template<typename PointT>
+std::vector<typename pcl::PointCloud<PointT>::Ptr> ProcessPointClouds<PointT>::KdTreeClustering(typename pcl::PointCloud<PointT>::Ptr cloud, float clusterTolerance, int minSize, int maxSize)
+{
+
+    // Time clustering process
+    auto startTime = std::chrono::steady_clock::now();
+
+    std::vector<typename pcl::PointCloud<PointT>::Ptr> pclClusters;
+
+    // TODO:: Fill in the function to perform euclidean clustering to group detected obstacles
+    KdTree* tree = new KdTree;
+
+    for (int i=0; i<cloud->points.size(); i++){
+        PointT cloudPoint = cloud->points[i];
+        std::vector<float> point = {cloudPoint.x,cloudPoint.y,cloudPoint.z};
+        tree->insert(point,i); 
+    } 
+
+    std::vector<std::vector<int>> clusters = euclideanCluster(cloud,tree,clusterTolerance);
+  
+    for(std::vector<int> cluster: clusters){
+        
+        if(cluster.size() > minSize && cluster.size() < maxSize){
+             
+              typename pcl::PointCloud<PointT>::Ptr cloudCluster(new pcl::PointCloud<PointT>);
+
+              for(int index : cluster){
+                    cloudCluster->points.push_back(cloud->points[index]);
+              }
+
+              cloudCluster->width = cloudCluster->points.size();
+              cloudCluster->height = 1;
+              cloudCluster->is_dense = true; 
+
+              pclClusters.push_back(cloudCluster);
+
+        }
+
+
+    }
+  
+
+    auto endTime = std::chrono::steady_clock::now();
+    auto elapsedTime = std::chrono::duration_cast<std::chrono::milliseconds>(endTime - startTime);
+    std::cout << "clustering took " << elapsedTime.count() << " milliseconds and found " << clusters.size() << " clusters" << std::endl;
+
+    return pclClusters;
 }
 
 template<typename PointT>
